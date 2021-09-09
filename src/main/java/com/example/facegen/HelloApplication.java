@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class HelloApplication extends Application {
     static int width = 600;
@@ -22,6 +23,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
 
+        //Her fra: Ikke relevant
         Group root = new Group();
         Scene scene = new Scene(root, width, height);
         stage.setTitle("Face");
@@ -29,12 +31,36 @@ public class HelloApplication extends Application {
 
         gc.clearRect(0, 0, width, height);
         root.getChildren().add(canvas);
+        // Her til
 
-        drawPrimitiveFace();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Pick a colour Black or white");
+        String colourChoice = scanner.nextLine();
+
+
+        drawFace();
 
         stage.show();
     }
 
+    public static void drawFace(){
+            drawFaceShape();
+            drawEyesShape();
+    }
+
+    public static void drawFaceShape(){
+        gc.strokeOval(150, 150, 300, 250);
+    }
+
+    public static void drawEyesShape(){
+        // Pick your eye colour
+        gc.setFill(Color.BLACK);
+        gc.fillOval(220,220,30,30);
+        gc.fillOval(360,220,30,30);
+
+    }
+
+    /*
     public static void drawPrimitiveFace() {
         drawShape();
         drawMouth(50);
@@ -55,6 +81,8 @@ public class HelloApplication extends Application {
         gc.fillOval(220,220,20,20);
         gc.fillOval(360,220,20,20);
     }
+
+     */
 
     public static void main(String[] args) {
         launch();
