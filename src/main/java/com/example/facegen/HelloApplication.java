@@ -1,5 +1,7 @@
 package com.example.facegen;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -9,6 +11,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -23,6 +27,7 @@ public class HelloApplication extends Application {
     static Canvas canvas = new Canvas(width, height);
     static GraphicsContext gc = canvas.getGraphicsContext2D();
 
+    // Global Array with colour options
     static String[] arrayColour = {"Black", "Green", "Yellow", "Red"};
 
     @Override
@@ -38,7 +43,10 @@ public class HelloApplication extends Application {
         gc.clearRect(0, 0, width, height);
         root.getChildren().add(canvas);
         // Her til
+
         Random random = new Random();
+        // User can choose what colour they want
+
         Scanner scanner = new Scanner(System.in);
         System.out.print("Pls pick a colour ");
         for (int i = 0; i < arrayColour.length; i++){
@@ -55,12 +63,25 @@ public class HelloApplication extends Application {
             int indexOfChoice = Arrays.asList(arrayColour).indexOf(userChoice);
             drawEyesShape(indexOfChoice);
         }
-
-
         drawFaceShape();
         drawSmileShape();
 
+
+
         stage.show();
+
+        // Gif maker
+        /*
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
+            gc.clearRect(0, 0, width, height);
+            drawEyesShape(randomIndexNumber());
+            drawFaceShape();
+            drawSmileShape();
+        }));
+        timeline.setCycleCount(360);
+        timeline.play();
+        */
+
     }
 
     public static String getString (String makeStringUpperCase){
@@ -76,7 +97,7 @@ public class HelloApplication extends Application {
 
     public static int randomIndexNumber(){
         int min = 0;
-        int max = 3;
+        int max = 4;
         return new Random().nextInt(max - min) + min;
     }
 
