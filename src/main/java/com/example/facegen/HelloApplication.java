@@ -46,6 +46,7 @@ public class HelloApplication extends Application {
 
         Random random = new Random();
         // User can choose what colour they want
+        // Comment this out if you want to see the animation
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("Pls pick a colour ");
@@ -66,11 +67,13 @@ public class HelloApplication extends Application {
         drawFaceShape();
         drawSmileShape();
 
+        //Comment out here to
 
 
         stage.show();
 
         // Gif maker
+        // Comment this out if you want user to write an input
         /*
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
             gc.clearRect(0, 0, width, height);
@@ -81,6 +84,7 @@ public class HelloApplication extends Application {
         timeline.setCycleCount(360);
         timeline.play();
         */
+        // Comment out here to
 
     }
 
